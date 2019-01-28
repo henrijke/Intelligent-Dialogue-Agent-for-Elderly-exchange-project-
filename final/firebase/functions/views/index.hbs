@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assistant control board</title>
+    <link rel="stylesheet" href="styles.css">
+  <!--  <script src="/socket.io/socket.io.js"></script> -->
+</head>
+<body>
+<!-- Header -->
+<header>
+    <h2>Nice Website</h2>
+    <p>image here</p>
+    {{#if login}}
+        <div hidden id="user-pic"></div>
+        <div hidden id="user-name"></div>
+        <button id="logout">Logout</button>
+    {{/if}}
+    {{#unless login}}
+        <button id="login">Login</button>
+    {{/unless}}
+</header>
+{{#if login}}
+    <!-- Stats of the Assistant -->
+    <div id="stats">
+        <div id="container"></div>
+        <form id="form" action="">
+            <input id="message" autocomplete="off">
+        </form>
+        <button id="button">JEBA</button>
+    </div>
+
+    <!-- Control options -->
+    <div id="control">
+        <h1> Moi:-) </h1>
+        <ul>
+            {{#each data}}
+                <li>{{name}}</li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}
+
+{{#unless login}}
+    <div class="loginRemainder">
+        <h1>Remember to login:-)</h1>
+        <p>You should login with your gmail account</p>
+    </div>
+{{/unless}}
+
+<!-- Footer -->
+<footer></footer>
+<!--
+<script>
+    const socket = io();
+    const button = document.querySelector('#button');
+    const message = document.querySelector('#message');
+    const form = document.querySelector('#form');
+    const container = document.querySelector('#container');
+    //form.preventDefault();
+
+    button.addEventListener('click',()=>{
+        console.log(message.value);
+        socket.emit('chat message',message.value);
+        message.value = "";
+        return false;
+    });
+    socket.on('chat message',(msg)=>{
+        const newMessage= document.createElement('p');
+        newMessage.innerText = msg;
+        container.appendChild(newMessage);
+    });
+</script>
+-->
+
+<!-- Import and configure the Firebase SDK -->
+<!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+<!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+<script src="/__/firebase/5.7.3/firebase-app.js"></script>
+<script src="/__/firebase/5.7.3/firebase-auth.js"></script>
+<script src="/__/firebase/5.7.3/firebase-storage.js"></script>
+<script src="/__/firebase/5.7.3/firebase-messaging.js"></script>
+<script src="/__/firebase/5.7.3/firebase-firestore.js"></script>
+<script src="/__/firebase/init.js"></script>
+
+<script rel="script" src="javascript.js"></script>
+</body>
+</html>
