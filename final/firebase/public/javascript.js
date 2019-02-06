@@ -5,6 +5,8 @@ const message = document.querySelector('#message');
 const form = document.querySelector('#form');
 const container = document.querySelector('#container');
 //form.preventDefault();
+var firebase = require('firebase');
+var firebaseui = require('firebaseui');
 
 button.addEventListener('click',()=>{
     console.log(message.value);

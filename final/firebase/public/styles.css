@@ -1,6 +1,132 @@
+/*
 body{
-    background-color: grey;
+  background-color: $mainColor;
+ // background-image: url("./img/temptausta.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /*
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+
 }
-h2{
-    color:white;
+button{
+  @extend %button;
 }
+
+header{
+  height: 50px;
+  background-color: $secondaryColor;
+  width:100%;
+  overflow: hidden;
+  h2 {
+    @extend %font-pack1;
+  }
+  img {
+    background-image: url("./img/profile.jpg");
+    border-radius: 50%;
+    border: 1px solid white;
+    padding: 3px;
+    width: 100px;
+    height: 100px;
+
+  }
+}
+*/
+i {
+  color: #fafaff;
+}
+
+header i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+
+footer {
+  background-color: #011627;
+  width: 100%;
+  margin: 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.disappear {
+  opacity: 100%;
+  transition: 0.5s;
+}
+
+#stats {
+  background-color: #53a2be;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#loginHolder {
+  background-color: white;
+  color: black;
+}
+#loginHolder button {
+  background-color: blueviolet;
+  color: white;
+  border-radius: 12px;
+}
+
+body {
+  background-color: #011627;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+  background-color: #011627;
+  color: #fafaff;
+  font-size: 16px;
+  padding: 15px 30px;
+  text-align: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #fafaff;
+  margin: 15px;
+}
+
+h1, h2, h3 {
+  font-family: "Noto Sans TC", sans-serif;
+  color: #fafaff;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  color: #fafaff;
+  font-style: light;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #fafaff;
+  color: #011627;
+  transition: 0.2s;
+}
+
+#registerBox, #loginBox, #indexButtons {
+  text-align: center;
+  align-content: center;
+  width: 70%;
+  margin-left: 15%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+/*# sourceMappingURL=styles.css.map */

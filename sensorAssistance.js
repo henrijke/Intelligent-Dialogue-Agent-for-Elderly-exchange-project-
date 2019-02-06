@@ -45,7 +45,6 @@ const unexportOnClose=()=>{
     led.writeSync(0);
     led.unexport();
     pushButton.unexport();
-    sensor.unexport();
 };
 
 process.on('SIGINT', unexportOnClose);

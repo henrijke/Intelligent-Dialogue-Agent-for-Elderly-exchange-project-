@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assistant control board</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google web fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-messaging.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-functions.js"></script>
+</head>
+<body>
+<header>
+    <i class="material-icons">help</i>
+</header>
+
+<article>
+    <!-- Logo and text box -->
+    <div>
+
+    </div>
+    <!-- Front page -->
+    <div id="indexButtons">
+        <i class="material-icons">face</i>
+        <h1>Welcome</h1>
+        <p>Unde rerum atque et autem blanditiis. Aut qui non at. Aliquam hic fugit id reiciendis quos molestias dolore.</p>
+        <button id="loginShortcut">Login</button>
+        <button id="registerShortcut">Register</button>
+    </div>
+    <!-- Login -->
+    <div id="loginBox" hidden>
+        <label for="email"><b>Username</b></label>
+        <input id="email" type="text" placeholder="Enter Email" name="email" required>
+        <label for="psw"><b>Password</b></label>
+        <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+        <button id="login">Login</button>
+    </div>
+    <!-- Register -->
+    <div id="registerBox" hidden>
+        <label for="email"><b>Username</b></label>
+        <input id="emailReg" type="text" placeholder="Enter Email" name="email" required>
+        <label for="psw"><b>Password</b></label>
+        <input id="pswReg" type="password" placeholder="Enter Password" name="psw" required>
+        <button id="register">Login</button>
+    </div>
+</article>
+
+<footer>
+
+</footer>
+
+<script rel="script" src="fb_credentials.js"></script>
+<script rel="script" src="javascript_firebase.js"></script>
+</body>
+</html>

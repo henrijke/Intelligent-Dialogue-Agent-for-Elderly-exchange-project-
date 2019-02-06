@@ -1,0 +1,173 @@
+$mainColor: #3a506b;
+$secondaryColor: #53a2be;
+$colorDark: #011627;
+$colorOpp: #d33f49;
+$colorWhite: #fafaff;
+
+$font-stack1: Helvetica,sans-serif;
+$font-stack2: Arial,sans-seriff;
+
+%font-pack1 {
+  color: $colorWhite;
+  font-family: $font-stack1;
+  font-size: large;
+  font-weight: bold;
+}
+
+%font-pack2 {
+  color: $colorWhite;
+  font-family: $font-stack2;
+  font-size: medium;
+}
+%button {
+  border-radius: 14px;
+  background-color: $secondaryColor;
+  @extend %font-pack2;
+  border: none;
+  text-align:center;
+
+}
+/*
+body{
+  background-color: $mainColor;
+ // background-image: url("./img/temptausta.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /*
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+
+}
+button{
+  @extend %button;
+}
+
+header{
+  height: 50px;
+  background-color: $secondaryColor;
+  width:100%;
+  overflow: hidden;
+  h2 {
+    @extend %font-pack1;
+  }
+  img {
+    background-image: url("./img/profile.jpg");
+    border-radius: 50%;
+    border: 1px solid white;
+    padding: 3px;
+    width: 100px;
+    height: 100px;
+
+  }
+}
+*/
+i{
+  color: $colorWhite;
+}
+header{
+  i{
+    position:absolute;
+    top:0;
+    right:0;
+    padding: 10px;
+
+  }
+}
+footer{
+  background-color: $colorDark;
+  width: 100%;
+  margin:0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+.disappear{
+  opacity: 100%;
+  transition: 0.5s;}
+#stats{
+  background-color: $secondaryColor;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.loginRemainder{
+
+}
+
+.hidden{
+visibility: hidden;
+}
+
+#loginHolder{
+  background-color: white;
+  color: black;
+  button{
+    background-color: blueviolet;
+    color: white;
+    border-radius:12px;
+  }
+}
+body{
+  background-color: $colorDark;
+}
+button{
+  //font-family: 'Open Sans', sans-serif;
+  //font-family: 'Noto Sans TC',Arial,sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  //border-radius:5px;
+  background-color: $colorDark;
+  color: $colorWhite;
+  font-size: 16px;
+  padding: 15px 30px;
+  text-align: center;
+  border-style: solid;
+  border-width: 2px;
+  border-color: $colorWhite;
+  margin: 15px;
+}
+
+h1,h2,h3{
+  font-family: "Noto Sans TC",sans-serif;
+  color: $colorWhite;
+}
+p{
+  font-family: 'Open Sans', sans-serif;
+  color: $colorWhite;
+  font-style: light;
+}
+
+button:hover{
+ // box-shadow: 0 0px 0px 0 rgba(255,255,255,0.24), 0 10px 25px 0 rgba(255,255,255,255.19);
+  cursor: pointer;
+}
+button:active{
+  background-color: $colorWhite;
+  color: $colorDark;
+  transition: 0.2s
+}
+
+%centralize{
+  text-align:center;
+  align-content: center;
+  //background-color: $mainColor;
+ // border-radius:15%;
+  width: 70%;
+  margin-left: 15%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#indexButtons{
+  @extend %centralize;
+}
+#loginBox{
+  @extend %centralize;
+}
+#registerBox{
+  @extend %centralize;
+}

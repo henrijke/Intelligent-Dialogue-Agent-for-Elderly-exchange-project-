@@ -7,11 +7,6 @@ const firebase = require('firebase-admin');
 const express = require('express');
 // Initialize express
 const app = express();
-// Setting up the socket connection
-/*
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-*/
 // Using body parsing middleware. Parses incoming request bodies
 const bodyParser = require('body-parser');
 // Support json encoded bodies
@@ -27,6 +22,11 @@ app.set('views','./views');
 // Use engine
 app.set('view engine','hbs');
 // Using test database
+const expressValidator = require('express-validator');
+const expressSession = require('express-session');
+app.use(expressValidator());
+// saveunitiliazed määrittää tallennetaanko vaikka ei oli initilisoitu, resave tallentaa joka kutsun vaikka ei olisi initialisoitu
+app.use(expressSession({secret: 'MerenneitoPanini', saveUninitialized: false, resave: false}));
 firebase.initializeApp(
     // Using test functions helper to initialize
     functions.config().firebase
@@ -35,15 +35,15 @@ firebase.initializeApp(
 const db = firebase.firestore();
 
 // Firestore functions **********************************************************
-const getData = () => {
+const getData = (data) => {
     return new Promise((resolve, reject) => {
-        db.collection('data').get()
+        db.collection(data).get()
             .then((snapshot) => {
                 let output = [];
                 snapshot.forEach((doc) => {
-                    output.push({name: doc.data().value});
+                    // output.push({name: doc.data().value});
+                    output.push(doc.data());
                 });
-                console.log(output);
                 resolve(output);
                 return true;
             }).catch((err) => {
@@ -51,50 +51,48 @@ const getData = () => {
         });
     });
 };
-
 const getAllTimes = ()=>{
-    return new Promise((resolve,reject)=>{
-        db.collection('time').get()
-            .then((snapshot) => {
-                let outputMessage = [];
-                snapshot.forEach((doc) => {
-                    outputMessage.push(doc.data());
-                });
-                resolve(outputMessage);
-                return true;
-            })
-            .catch((err) => {
-                reject(err);
-            });
-    });
+        return getData('time');
 };
 const timeSearch = (params) =>{
-    return new Promise( (resolve,reject)=> {
-        db.collection('time').get()
-            .then((snapshot) => {
-                snapshot.forEach((doc) => {
+        return getAllTimes().then(data =>{
+                data.forEach((doc)=>{
                     if (doc.data().added === params.added) {
                         resolve(doc);
                         return doc;
-                        //Huom forEachista ei pääse siististi pois kesken kaiken
                     }
                 });
-                resolve (false);
-                return false;
-            })
-            .catch((err) => {
-                console.log('Error getting documents', err);
-                reject(err);
-            });
-    })};
+            resolve (false);
+            return false;
+            }).catch(err=>console.log(err))
+};
 
-const remove = (params)=>{
+const removeData = (params, data)=>{
     return new Promise((resolve,reject)=>{
-            db.collection('time').doc(params.id).delete().then(() =>{
-            return true;
+            db.collection(data).doc(params.id).delete().then(() =>{
+                resolve(true);
+                return true;
         }).catch((err)=>
             reject(err));
+    });
+};
 
+const getGreetings = ()=>{
+    return getData('greeting');
+};
+
+const sayGreeting = (greetingId) => {
+    return new Promise((resolve,reject) => {
+        getGreetings()
+            .then(result => {
+                for (let res of result){
+                    if(res.id === greetingId){
+                        resolve(res);
+                        return res;
+                    }
+                }
+            })
+            .catch(err => console.log(err));
     });
 };
 
@@ -102,8 +100,8 @@ const removeTime = (params)=>{
     return new Promise ((resolve,reject)=>{
         timeSearch(params).then(result => {
             if (result) {
-                resolve(remove(result));
-                return remove(result);
+                resolve(removeData(result, 'time'));
+                return removeData(result, 'time');
             } else {
                 resolve(`${params.added} wasn't found!`);
                 return false;
@@ -181,10 +179,15 @@ const checkUser = (userId)=>{
 // Index page
 app.get('/',(req,res)=>{
     res.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-    getData().then(response =>{
+    /*
+    getData('data').then(response =>{
         console.log(response);
-        res.render('index', {response});
-    });
+        res.render('index3', {
+            response:response,
+            login: true
+        });
+    });*/
+    res.render('login',{});
 });
 
 app.post('/test',(req,res)=>{
@@ -227,11 +230,15 @@ app.post('/webhook',(req,res)=>{
             break;
         case "setGreeting":
             //TODO Set greeting
+
             responseSender();
             break;
-        case "makeGreeting":
+        case "sayGreeting":
             //TODO Say greeting
-            responseSender();
+            sayGreeting(1).then(data =>{
+                    responseSender(data);
+                }
+            );
             break;
         default:
             break;
@@ -242,26 +249,6 @@ app.post('/webhook',(req,res)=>{
 app.get('/login',(req,res)=>{
 
 });
-
-// Socket.io **********************************************************************
-//SOCKET EI  TAIDA TOIMII FIREBASES:D:D::D:D:D FUCK
-// https://codelabs.developers.google.com/codelabs/firebase-web/#2
-/*
-io.on('connection',(socket) => {
-    console.log("made socket connection");
-
-    socket.on('message',(msg)=>{
-        io.emit('message',msg);
-    });
-
-    socket.broadcast.emit('hi');
-
-    // When user leaves
-    socket.on('disconnect',()=>{
-        console.log('user disconnected');
-    });
-});
-*/
 
 // Exports **************************************************************
 exports.app = functions.https.onRequest(app);

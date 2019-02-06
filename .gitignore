@@ -51,4 +51,9 @@ package-lock.json
 *.log
 .firebaserc
 credentials.js
+.gitignore
+assistant-sdk-nodejs-master
+js_credentials.js
+loginCredentials.js
+firebase_credentials.js
 

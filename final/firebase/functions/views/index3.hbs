@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assistant control board</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-messaging.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-functions.js"></script>
+</head>
+<body>
+<div id="loginHolder">
+    <h1>Login baby</h1>
+    <label for="email"><b>Username</b></label>
+    <input id="email" type="text" placeholder="Enter Email" name="email" required>
+    <br>
+    <label for="psw"><b>Username</b></label>
+    <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+    <button id="login"> Login here </button>
+</div>
+
+<div id="dbTester">
+    <h1>Testaa database muutoksia</h1>
+    <h3>Is raspberry active</h3>
+    <p id="isOnline">No</p>
+    <h3>Is sensor active</h3>
+    <p id="isSensor">No</p>
+</div>
+
+<div id="controller">
+    <div id="controllerMenu">
+        <ul>
+            <li>Eka</li>
+            <li>Toka</li>
+            <li>kolmas</li>
+        </ul>
+        <div class="controllerPage" id="controllerFirst">
+            <h1>Moi</h1>
+        </div>
+        <div class="controllerPage" id="controllerSecond">
+            <h1>HEI</h1>
+        </div>
+        <div class="controllerPage" id="controllerThird">
+            <h1>HAHA</h1>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="convHolder">
+    <h1>Conversations</h1>
+    <div id="messageBox"></div>
+</div>
+
+<footer>
+
+</footer>
+<script rel="script" src="fb_credentials.js"></script>
+<script rel="script" src="javascript_firebase.js"></script>
+</body>
+</html>
